@@ -32,6 +32,9 @@ public class Erdos extends Graphe {
 	
 	public void initErdos()
 	{
+		Random r = new Random();
+		double num = -1.0; 
+		
 		//on crée tous les sommets vides
 		for(int i=0;i<this.nbSommets;i++)
 		{
@@ -41,12 +44,22 @@ public class Erdos extends Graphe {
 		//et on crée les aretes
 		for (int i=0;i<this.nbSommets;i++)
 		{
-			Noeud n = this.sommets.get(i);
-		//	n.succ.add()
-		}
+			Noeud s = this.sommets.get(i);
 		
-		Random r = new Random();
-		double num = r.nextDouble();
+			for(int j=i+1;j<this.nbSommets;j++)
+			{
+				Noeud n = this.sommets.get(j);
+				
+				if(r.nextDouble()<= this.p && !s.succ.contains(n) );
+				{
+					s.succ.add(n);
+					n.succ.add(s);
+				}
+			}			
+		}
 	}
+	
+	
+	
 }
 

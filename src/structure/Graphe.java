@@ -36,11 +36,27 @@ public class Graphe {
 			else 
 				this.nbSucc = 0;
 		}
+		
+		protected String toString(int n)
+		{
+			String s = "";
+			StringBuffer sb = new StringBuffer(100);
+			 
+			for(int i=0;i<this.nbSucc;i++)
+			{
+				int succ = this.succ.get(i).value; //HMMMMMMMMM je renvoi un noeud alors que probablement je veux le numero du noeud
+				if(n>succ)
+					sb.append(succ);
+			}
+			
+			return s;
+		}
+		
 	}
 	
 	public Graphe()
 	{
-		this.sommets = new ArrayList<>(20);
+		this.sommets = new ArrayList<Noeud>(20);
 		this.nbSommets = 0;
 	}
 	
@@ -50,6 +66,21 @@ public class Graphe {
 		this.nbSommets = this.sommets.size();
 	}
 	
-	
+	public String toString()
+	{
+		StringBuffer sb = new StringBuffer(1000);
+		String s = "";
+		
+		
+		for(int i=0;i<this.nbSommets;i++)
+		{
+			sb.append(i);
+			sb.append(this.sommets.get(i).toString());
+		}
+		
+		s = sb.toString();
+		
+		return s;
+	}
 	
 }
