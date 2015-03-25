@@ -46,7 +46,7 @@ public class Graph {
 		
 		while(cond)
 		{	
-			cherche_arete(s1)
+			cherche_arete(s1);
 		}
  	}
 	
