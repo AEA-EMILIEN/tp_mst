@@ -1,6 +1,7 @@
 package utils;
 
 import graph.Graph;
+import graph.GraphSuccessorArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Parser {
 	
 	
 	public static Graph loadGraphFromFile(String file) throws Exception {
-		Graph graph = new Graph();
+		Graph graph = new GraphSuccessorArray();
 		List<String> list = accessFile.reader(file);
 		int cpt = -1;
 		List<Integer> vertex = new ArrayList<Integer>() ;

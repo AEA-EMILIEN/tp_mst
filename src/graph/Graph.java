@@ -3,17 +3,17 @@ import java.util.Iterator;
 
 import exception.*;
 
-public class Graph {
+public interface Graph {
 	
-	 public void addVertex() { }
+	 public void addVertex();
 	 
-     public void addVertexNumber(int i) throws VertexAlreadyExistException {}
+     public void addVertexNumber(int i) throws VertexAlreadyExistException;
      
-     public void addEdge(Vertex v1, Vertex v2) throws VertexNotFoundException {}
+     public void addEdge(Vertex v1, Vertex v2) throws VertexNotFoundException ;
      
-     public void addEdge(int i, int j) throws VertexNotFoundException {}
+     public void addEdge(int i, int j) throws VertexNotFoundException;
      
-     public Vertex getVertex(int i) { return null;}
+     public Vertex getVertex(int i) ;
      
-     public Iterator<Edge> getSortedEdgeIterator() {return null;}
+     public Iterator<Edge> getSortedEdgeIterator() ;
 }
