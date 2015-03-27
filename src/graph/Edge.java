@@ -109,4 +109,15 @@ public class Edge {
 		
 		return false;
 	}
+	
+	@Override
+	public String toString()
+	{
+		String s = "";
+		s+="v1:"+this.v1.val;
+		s+=" v2:"+this.v2.val;
+		s+=" weigth:"+this.weigth;
+		return s;
+	}
+	
 }
