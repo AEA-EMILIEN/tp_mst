@@ -260,7 +260,7 @@ public class GraphSuccessorArray implements Graph {
 	{
 		if(this.p==null)
 			return null;
-		List<Integer> toto = new ArrayList(this.p.length);
+		List<Integer> toto = new ArrayList<Integer>(this.p.length);
 		for(int j=0;this.p[j]!=null && j<this.p.length;j++)
 			toto.add(this.p[j].v.val);
 		
