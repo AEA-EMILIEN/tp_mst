@@ -1,5 +1,6 @@
 package graph;
 import java.util.Iterator;
+import java.util.List;
 
 import exception.*;
 
@@ -20,4 +21,8 @@ public interface Graph {
      public Vertex getVertex(int i) ;
      
      public Iterator<Edge> getSortedEdgeIterator() ;
+     
+     public List<Integer> getListVertex() ;
+     
+     public List<Edge> getListEdges(int n) throws VertexNotFoundException;
 }

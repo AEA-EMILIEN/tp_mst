@@ -181,9 +181,4 @@ public class GraphSuccessorArrayTest {
 		assertEquals(9,i.next().weigth);
 	}
 
-	@Test
-	public void testGetListEdges() {
-		fail("Not yet implemented"); // TODO
-	}
-
 }
