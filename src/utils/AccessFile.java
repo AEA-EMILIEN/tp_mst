@@ -25,7 +25,7 @@ public class AccessFile {
 			while ((line=br.readLine())!=null) {
 				System.out.println(line);
 				tab = line.split(" ");
-				if (tab.length%2 != 0) 
+				if (tab.length%2 == 0) 
 					throw new Exception("incomplet file"); // Create the exception
 				listVertex.add(Integer.parseInt(tab[0]));
 				for (int i = 1; i < tab.length-2; i++) {
@@ -49,7 +49,7 @@ public class AccessFile {
 			BufferedWriter bw = new BufferedWriter(fw) ;
 			PrintWriter outputFile = new PrintWriter(bw) ; 
 			for (Integer vertex : listVertex) {
-				List<int[]> listEdges = Parser.listEdges(vertex);
+				List<int[]> listEdges = Parser.getEdges(vertex);
 				String s = vertex + "" ;
 				for (int[] t : listEdges)
 					s += " " + t[0] + " " + t[1];
