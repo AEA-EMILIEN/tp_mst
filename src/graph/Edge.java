@@ -34,11 +34,16 @@ public class Edge {
 		this.weigth= randInt(1,N);
 	}
 	
+	
+	
+	
+	 
 	@Override
 	public boolean equals(Object object2)
 	{
 		return object2 instanceof Edge && this.equals((Edge) object2);
 	}
+	
 	
 	public boolean equals(Edge e2) {
 		int minE = Operations.min(this.v1.val, this.v2.val);
@@ -98,5 +103,10 @@ public class Edge {
 
 	public void setWeigth(int weigth) {
 		this.weigth = weigth;
+	}
+
+	public boolean equal(Edge e) {
+		
+		return false;
 	}
 }

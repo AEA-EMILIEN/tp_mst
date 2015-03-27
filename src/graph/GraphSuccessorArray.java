@@ -21,7 +21,7 @@ import exception.VertexNotFoundException;
 public class GraphSuccessorArray implements Graph {
 	
 	public int indNextFree;
-	public VertexAndInt [] p;
+	public VertexAndInt[] p;
 	public ArrayList<Edge> s ;
 	
 	
@@ -115,11 +115,12 @@ public class GraphSuccessorArray implements Graph {
 	 */
 	private int searchIndiceVertex(Vertex v) 
 	{
-		if (v.equals(p[v.val].v))
+		
+		if (p.length<v.val && p[v.val]!=null && v.equals(p[v.val].v))
 			return v.val;
 		for(int i=0;i<p.length;i++)
 		{
-			if (v.equals(p[i].v))
+			if (p[i]!=null && v.equals(p[i].v))
 				return i;
 		}
 		return -1;
@@ -146,7 +147,7 @@ public class GraphSuccessorArray implements Graph {
 		else
 			e = new Edge(v1,v2);
 		//already exist
-		if (s!=null && s.contains( e))
+		if (s!=null && equals(e))
 			return;
 		
 		
@@ -178,11 +179,13 @@ public class GraphSuccessorArray implements Graph {
 		
 	}
 
+	
+
 	public void actualiseP(int n)
 	{
-		for(int j=n;j<p.length;j++)
+		for(int j=n+1;j<p.length;j++)
 		{
-			if(p[j].i>=0)
+			if(p[j]!=null && p[j].i>=0)
 				p[j].i++;
 		}
 	}
@@ -216,10 +219,10 @@ public class GraphSuccessorArray implements Graph {
 	 */
 	@Override
 	public Vertex getVertex(int i) {
-		for(int j=0;j<p.length;j++)
+		for(int j=0;this.p!=null && j<this.p.length;j++)
 		{
-			if(p[j].v.val==i)
-				return p[j].v;
+			if(this.p[j]!=null && this.p[j].v.val==i)
+				return this.p[j].v;
 		}
 		return null;
 	}
@@ -239,7 +242,6 @@ public class GraphSuccessorArray implements Graph {
 	 */
 	public List<Edge> getListEdges(int n) throws VertexNotFoundException
 	{
-		
 		int indiceN = searchIndiceVertex(new Vertex(n));
 		if (indiceN==-1)
 			throw new VertexNotFoundException();
@@ -252,5 +254,16 @@ public class GraphSuccessorArray implements Graph {
 			l.add(this.s.get(j));
 		
 		return l;
+	}	
+	
+	public List<Integer> getListVertex()
+	{
+		if(this.p==null)
+			return null;
+		List<Integer> toto = new ArrayList(this.p.length);
+		for(int j=0;this.p[j]!=null && j<this.p.length;j++)
+			toto.add(this.p[j].v.val);
+		
+		return toto;
 	}
 }
