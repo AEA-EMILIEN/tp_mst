@@ -39,6 +39,7 @@ public class GraphSuccessorArrayTest {
 		
 		gsa.addVertexNumber(0);
 		
+		
 	}
 
 	@Test
