@@ -1,22 +1,21 @@
 package main;
 
-import java.util.List;
-
-import utils.AccessFile;
+import graph.GraphSuccessorArray;
+import utils.Parser;
 
 public class Main {
 
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) {
-		AccessFile access = new AccessFile();
+	public static void main(String[] args) throws Exception {
+		GraphSuccessorArray g = (GraphSuccessorArray) Parser.loadGraphFromFile("data/graph_demo.txt");
+		System.out.println("Graphe done !");
 		
-		access.reader("data/graph_demo.txt");
-		System.out.println("Lecture finie, résultat :");
-		System.out.println(access.listEdges);
-		System.out.println(access.listVertex);
+		//System.out.println(g.getListVertex());
 
+		Parser.toTextFormat(g, "data/test.txt");
 	}
 
 }

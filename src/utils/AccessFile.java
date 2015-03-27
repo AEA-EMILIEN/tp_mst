@@ -23,15 +23,19 @@ public class AccessFile {
 			String line;
 			String[] tab = null;
 			while ((line=br.readLine())!=null) {
-				System.out.println(line);
+				//System.out.println(line);
 				tab = line.split(" ");
 				if (tab.length%2 == 0) 
 					throw new Exception("incomplet file"); // Create the exception
-				listVertex.add(Integer.parseInt(tab[0]));
-				for (int i = 1; i < tab.length-2; i++) {
-					int[] t = new int[2];
-					t[0] = Integer.parseInt(tab[i++]); 
+				if (! listVertex.contains(Integer.parseInt(tab[0])))
+					listVertex.add(Integer.parseInt(tab[0]));
+				for (int i = 1; i < tab.length; i+=2) {
+					if (! listVertex.contains(Integer.parseInt(tab[i])))
+						listVertex.add(Integer.parseInt(tab[i]));
+					int[] t = new int[3];
+					t[0] = Integer.parseInt(tab[0]);
 					t[1] = Integer.parseInt(tab[i]);
+					t[2] = Integer.parseInt(tab[i+1]);
 					listEdges.add(t);
 				}
 			}

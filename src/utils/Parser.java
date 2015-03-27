@@ -11,9 +11,15 @@ import graph.GraphSuccessorArray;
 public class Parser {
 	
 	private static AccessFile accessFile = new AccessFile();
+	private static GraphSuccessorArray graph;
 	
-	public static void toTextFormat(Graph g, String file) throws Exception {
-		//TODO
+	public Parser(GraphSuccessorArray g) {
+		Parser.graph = g;
+	}
+	
+	
+	public static void toTextFormat(GraphSuccessorArray g, String file) throws Exception {
+		accessFile.listVertex = g.getListVertex();
 	}
 	
 	
@@ -22,21 +28,22 @@ public class Parser {
 		List<Integer> listVertex = accessFile.listVertex;
 		List<int[]> listEdges = accessFile.listEdges;
 		Graph graph = new GraphSuccessorArray(listVertex.size());
-		// Recommencer
-		for (int v : listVertex)
+		for (int v : listVertex){
+			System.out.println(v);
 			graph.addVertexNumber(v);
-		for (int i = 0; i<listVertex.size(); i++) {
-			int[] edge = listEdges.get(i);
-			for (int j=0; j < edge.length; j++ )
-				graph.addEdge(listVertex.get(i), edge[j++], edge[j]);
-		}	
+		}
+		//System.out.println(listVertex);
+		for (int[] t : listEdges) {
+				//System.out.println(t[0] + " " + t[1] + " "+ t[2]);
+				graph.addEdge(t[0], t[1], t[2]);
+		}
 		return graph;
 	}
 
 
-	public static List<int[]> getEdges(Integer vertex, GraphSuccessorArray graph) throws VertexNotFoundException {
+	public static List<int[]> getEdges(Integer vertex) throws VertexNotFoundException {
 		List<Edge> edgesClass = graph.getListEdges(vertex);
-		List<int[]> edgesInt = null ;
+		List<int[]> edgesInt = new ArrayList<int[]>() ;
 		for (Edge e : edgesClass) {
 			int[] t = {e.getV2().val, e.getWeigth() };
 			edgesInt.add(t);
@@ -45,3 +52,4 @@ public class Parser {
 		return edgesInt;
 	}
 
+}

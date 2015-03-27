@@ -116,7 +116,7 @@ public class GraphSuccessorArray implements Graph {
 	private int searchIndiceVertex(Vertex v) 
 	{
 		
-		if (p.length<v.val && p[v.val]!=null && v.equals(p[v.val].v))
+		if (p.length > v.val && p[v.val]!=null && v.equals(p[v.val].v))
 			return v.val;
 		for(int i=0;i<p.length;i++)
 		{
@@ -133,6 +133,7 @@ public class GraphSuccessorArray implements Graph {
 	{
 		int indiceV1 = searchIndiceVertex(v1);
 		int indiceV2 = searchIndiceVertex(v2);
+		
 		
 		if (indiceV1 < 0|| indiceV2 <0 )
 			throw new VertexNotFoundException();
@@ -260,7 +261,7 @@ public class GraphSuccessorArray implements Graph {
 	{
 		if(this.p==null)
 			return null;
-		List<Integer> toto = new ArrayList(this.p.length);
+		List<Integer> toto = new ArrayList<Integer>(this.p.length);
 		for(int j=0;this.p[j]!=null && j<this.p.length;j++)
 			toto.add(this.p[j].v.val);
 		
