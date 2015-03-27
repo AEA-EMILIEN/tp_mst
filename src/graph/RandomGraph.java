@@ -11,6 +11,9 @@ public class RandomGraph implements RandomGraphGenerator {
 	public Graph generateErdosRenyiGraph(int n, float p)
 			throws IllegalArgumentException{
 		
+		if(p<0.000 || p>1.000)
+			throw new IllegalArgumentException();
+		
 		Graph g = new GraphSuccessorArray(n);
 		Random rand = new Random();
 		
