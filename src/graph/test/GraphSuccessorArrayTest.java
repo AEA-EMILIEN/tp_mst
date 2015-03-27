@@ -1,6 +1,7 @@
 package graph.test;
 
 import static org.junit.Assert.*;
+import exception.VertexAlreadyExistException;
 import graph.GraphSuccessorArray;
 
 import org.junit.Test;
@@ -19,12 +20,25 @@ public class GraphSuccessorArrayTest {
 
 	@Test
 	public void testGraphSuccessorArrayInt() {
-		GraphSuccessorArray gsa = new GraphS
+		GraphSuccessorArray gsa = new GraphSuccessorArray(5);
+		
+		assertEquals(0,gsa.indNextFree);
+		assertEquals(5,gsa.p.length);
+		assertNull(gsa.p[2]); //on regarde arbitrairement une case du tableau. Elle doit etre null apres le constructeur
+		assertEquals(0,gsa.s.size());
 	}
 
 	@Test
-	public void testAddVertex() {
-		fail("Not yet implemented"); // TODO
+	public void testAddVertexNumberAfterEmptyConstructor() throws VertexAlreadyExistException {
+		GraphSuccessorArray gsa = new GraphSuccessorArray();
+		gsa.addVertexNumber(0);
+		
+		assertEquals(1,gsa.indNextFree);
+		assertEquals(1,gsa.p.length);
+		assertEquals(0,gsa.s.size());
+		
+		gsa.addVertexNumber(0);
+		
 	}
 
 	@Test

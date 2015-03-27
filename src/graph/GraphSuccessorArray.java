@@ -139,8 +139,12 @@ public class GraphSuccessorArray implements Graph {
 		int indMin = Operations.min(indiceV1,indiceV2);
 		//int indMax = Operations.max(indiceV1,indiceV2);
 		
-		Edge e = new Edge(v1,v2,weigth);
+		Edge e = null;
 		
+		if(weigth>=0)
+			e = new Edge(v1,v2,weigth);
+		else
+			e = new Edge(v1,v2);
 		//already exist
 		if (s!=null && s.contains( e))
 			return;
@@ -192,6 +196,18 @@ public class GraphSuccessorArray implements Graph {
 		addEdge(v1,v2,weigth);
 	}
 
+	@Override
+    public void addEdge(Vertex v1, Vertex v2) throws VertexNotFoundException
+    {
+		addEdge(v1,v2,-1);
+    }
+    
+	@Override
+    public void addEdge(int i, int j) throws VertexNotFoundException
+	{
+		addEdge(i, j,-1);
+	}
+	
 	/**
 	 * Return the vertex of value i
 	 * 
