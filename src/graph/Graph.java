@@ -9,9 +9,9 @@ public interface Graph {
 	 
      public void addVertexNumber(int i) throws VertexAlreadyExistException;
      
-     public void addEdge(Vertex v1, Vertex v2) throws VertexNotFoundException ;
+     public void addEdge(Vertex v1, Vertex v2,int weigth) throws VertexNotFoundException ;
      
-     public void addEdge(int i, int j) throws VertexNotFoundException;
+     public void addEdge(int i, int j,int weigth) throws VertexNotFoundException;
      
      public Vertex getVertex(int i) ;
      
