@@ -12,9 +12,10 @@ public class Main {
 	public static void main(String[] args) {
 		AccessFile access = new AccessFile();
 		
-		List<String> list = access.reader("data/graph_demo.txt");
+		access.reader("data/graph_demo.txt");
 		System.out.println("Lecture finie, résultat :");
-		System.out.println(list);
+		System.out.println(access.listEdges);
+		System.out.println(access.listVertex);
 
 	}
 
