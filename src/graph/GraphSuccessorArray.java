@@ -220,7 +220,7 @@ public class GraphSuccessorArray implements Graph {
 	 */
 	@Override
 	public Vertex getVertex(int i) {
-		for(int j=0;this.p!=null && j<this.p.length;j++)
+		for(int j=0;j<this.p.length && this.p!=null ;j++)
 		{
 			if(this.p[j]!=null && this.p[j].v.val==i)
 				return this.p[j].v;
@@ -262,8 +262,10 @@ public class GraphSuccessorArray implements Graph {
 		if(this.p==null)
 			return null;
 		List<Integer> toto = new ArrayList<Integer>(this.p.length);
-		for(int j=0;this.p[j]!=null && j<this.p.length;j++)
+		for(int j=0;j<this.p.length && this.p[j]!=null;j++)
+		{
 			toto.add(this.p[j].v.val);
+		}
 		
 		return toto;
 	}
