@@ -28,7 +28,7 @@ public class Parser {
 		for (int i = 0; i<listVertex.size(); i++) {
 			int[] edge = listEdges.get(i);
 			for (int j=0; j < edge.length; j++ )
-				graph.addEdge(listVertex.get(i), edge[j++]/*, edge[j]*/);
+				graph.addEdge(listVertex.get(i), edge[j++], edge[j]);
 		}	
 		return graph;
 	}
