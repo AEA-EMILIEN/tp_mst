@@ -3,6 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import utils.Operations;
 import exception.VertexAlreadyExistException;
@@ -19,17 +20,21 @@ import exception.VertexNotFoundException;
  */
 public class GraphSuccessorArray implements Graph {
 	
+	public int indNextFree;
 	public VertexAndInt [] p;
 	public ArrayList<Edge> s ;
 	
 	
-	public GraphSuccessorArray() {
+	public GraphSuccessorArray() 
+	{
+		this.indNextFree = 0;
 		this.p = null;
 		this.s = new ArrayList<Edge>();
 	}
 	
 	public GraphSuccessorArray(int nbVertex)
 	{
+		this.indNextFree = 0;
 		this.p = new VertexAndInt[nbVertex];
 		initP();
 		this.s = new ArrayList<Edge>();
@@ -43,9 +48,7 @@ public class GraphSuccessorArray implements Graph {
 	{
 		for(int i=0;i<p.length;i++)
 		{	
-			Vertex v = new Vertex(i);
-			VertexAndInt vi = new VertexAndInt(v, -1);
-			p[i]=vi;
+			p[i]=null;
 		}
 	}
 	
@@ -57,31 +60,50 @@ public class GraphSuccessorArray implements Graph {
 	 */
 	@Override
 	public void addVertex() {
-		if (p==null)
+		Boolean bool = true;
+		int name = this.indNextFree;
+		while(bool)
 		{
-			this.p = new VertexAndInt[1];
-			initP();
-		}
-		else
-		{
-			VertexAndInt[] tmp = new VertexAndInt[this.p.length+1];
-			System.arraycopy(this.p, 0, tmp, 0, this.p.length);
-			
-			Vertex v = new Vertex(tmp.length-1);
-			VertexAndInt vi = new VertexAndInt(v, -1);
-			
-			tmp[tmp.length-1]=vi;
-			
-			this.p = tmp;
+			try{
+			addVertexNumber(name);
+			}
+			catch (VertexAlreadyExistException e) {
+				name++;
+			}
+			bool = false;
 		}
 	}
 
-	/**
-	 * Not implemented
-	 */
+	
 	@Override
 	public void addVertexNumber(int i) throws VertexAlreadyExistException {
-		throw new UnsupportedOperationException("not implemented yet");
+		if (p==null)
+		{   this.indNextFree=1;
+			Vertex v = new Vertex(i);
+			
+			VertexAndInt vi = new VertexAndInt(v,-1);
+			this.p = new VertexAndInt[1];
+			this.p[0]=vi;
+		}
+		else
+		{
+			Vertex v = new Vertex(i);
+			
+			if(searchIndiceVertex(v)!=-1)
+				throw new VertexAlreadyExistException();
+			
+			
+			if(this.indNextFree==this.p.length)
+			{
+				VertexAndInt[] tmp = new VertexAndInt[this.p.length+1];
+				System.arraycopy(this.p, 0, tmp, 0, this.p.length);
+				this.p = tmp;
+			}
+			
+			VertexAndInt vi = new VertexAndInt(v, -1);
+			this.p[this.indNextFree]=vi;
+			this.indNextFree++;
+		}
 	}
 
 	/**
@@ -193,4 +215,26 @@ public class GraphSuccessorArray implements Graph {
 		return tmp.iterator();
 	}
 
+	/**
+	 * 
+	 * @param n un nom de sommet 
+	 * @return la liste des aretes de n
+	 * @throws VertexNotFoundException 
+	 */
+	public List<Edge> getListEdges(int n) throws VertexNotFoundException
+	{
+		
+		int indiceN = searchIndiceVertex(new Vertex(n));
+		if (indiceN==-1)
+			throw new VertexNotFoundException();
+		
+		List<Edge> l= new ArrayList<Edge>(); 
+		int depart = this.p[indiceN-1].i;
+		int stop   = this.p[indiceN].i;
+		
+		for(int j=depart+1;j<=stop;j++)
+			l.add(this.s.get(j));
+		
+		return l;
+	}
 }
