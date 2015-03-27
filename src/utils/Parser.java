@@ -16,32 +16,25 @@ public class Parser {
 	
 	
 	public static Graph loadGraphFromFile(String file) throws Exception {
-		Graph graph = new GraphSuccessorArray();
-		List<String> list = accessFile.reader(file);
+		accessFile.reader(file);
+		List<Integer> listVertex = accessFile.listVertex;
+		List<int[]> listEdges = accessFile.listEdges;
+		Graph graph = new GraphSuccessorArray(listVertex.size());
 		int cpt = -1;
-		List<Integer> vertex = new ArrayList<Integer>() ;
-		for (String s : list) {
-			cpt++;
-			String[] tab = s.split(" ");
-			if (tab.length%2 == 0)
-				System.out.println("Edge missing to create a vertex : line " + cpt);
-				// Exception ?
-			// ajout au graph
-			graph.addVertexNumber(Integer.parseInt(tab[0]));
-			for (int i = 0; i < tab.length-2; i++) {
-				int vertex1 = Integer.parseInt(tab[i]);
-				int vertex2 = Integer.parseInt(tab[i+1]);
-				if (!vertex.contains(vertex1)) { 
-					vertex.add(vertex1);
-					graph.addVertexNumber(vertex1);
-				}
-				if (!vertex.contains(vertex2)) { 
-					vertex.add(vertex2);
-					graph.addVertexNumber(vertex2);
-				}
-				graph.addEdge(vertex1, vertex2);
-			}	
-		}
+		// Recommencer
+		for (int v : listVertex)
+			graph.addVertexNumber(v);
+		for (int i = 0; i<listVertex.size(); i++) {
+			int[] edge = listEdges.get(i);
+			for (int j; j < edge.length; j++ )
+				graph.addEdge(listVertex.get(i), edge[j++], edge[j]);
+		}	
 		return graph;
+	}
+
+
+	public static List<int[]> listEdges(Integer vertex) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
