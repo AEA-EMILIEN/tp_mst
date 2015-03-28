@@ -18,7 +18,7 @@ public class Parser {
 	}
 	
 	
-	public static void toTextFormat(GraphSuccessorArray g, String file) throws Exception {
+	public static void toTextFormat(Graph g, String file) throws Exception {
 		accessFile.listVertex = g.getListVertex();
 		accessFile.writer(file);
 	}

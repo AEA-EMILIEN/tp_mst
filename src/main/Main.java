@@ -1,5 +1,6 @@
 package main;
 
+import graph.Graph;
 import graph.GraphSuccessorArray;
 import utils.Parser;
 
@@ -10,7 +11,7 @@ public class Main {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-	//	GraphSuccessorArray g = (GraphSuccessorArray) Parser.loadGraphFromFile("data/graph_demo.txt");
+		Graph g =  Parser.loadGraphFromFile("data/graph_demo.txt");
 		System.out.println("Graphe done !");
 		
 		//System.out.println(g.getListVertex());
@@ -23,8 +24,8 @@ public class Main {
 		gsa.addEdge(0, 1,5);
 		gsa.addEdge(0, 2,5);
 	
-		System.out.println(gsa.s.get(0).toString());
-		//Parser.toTextFormat(g, "data/test.txt");
+		
+		Parser.toTextFormat(g, "data/test.txt");
 	}
 
 }
