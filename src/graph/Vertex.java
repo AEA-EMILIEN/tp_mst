@@ -17,4 +17,10 @@ public class Vertex {
 	public boolean equals(Object object2) {
 	    return object2 instanceof Vertex && this.val == ((Vertex)object2).val;
 	}
+	
+	public boolean equals(Vertex v2)
+	{
+		return this.val == v2.val;
+		
+	}
 }

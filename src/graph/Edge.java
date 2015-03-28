@@ -105,10 +105,7 @@ public class Edge {
 		this.weigth = weigth;
 	}
 
-	public boolean equal(Edge e) {
-		
-		return false;
-	}
+	
 	
 	@Override
 	public String toString()

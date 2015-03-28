@@ -1,5 +1,7 @@
 package utils;
 
+import graph.Graph;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -47,18 +49,26 @@ public class AccessFile {
 		return ;
 	}
 
-	public void writer (String file) {
+	public void writer (String sg,String file) {
 		try {
-			FileWriter fw = new FileWriter(file) ;
+			FileWriter fw = new FileWriter(file,false) ;
 			BufferedWriter bw = new BufferedWriter(fw) ;
 			PrintWriter outputFile = new PrintWriter(bw) ; 
-			for (Integer vertex : listVertex) {
-				List<int[]> listEdges = Parser.getEdges(vertex);
-				String s = vertex + "" ;
-				for (int[] t : listEdges)
-					s += " " + t[0] + " " + t[1];
-				outputFile.println(s) ;
+			
+			String[] sa = sg.split("\n");
+			StringBuilder sb = new StringBuilder(sa.length*5);
+			for(String s : sa)
+			{
+				if(s.length()>=5)
+				{	
+					sb.append(s);
+					sb.append("\n");
+				}
+				
 			}
+			
+			outputFile.print(sb.toString()) ;
+			
 			outputFile.close() ;
 			System.out.println(file + " a été créé") ; 
 		}

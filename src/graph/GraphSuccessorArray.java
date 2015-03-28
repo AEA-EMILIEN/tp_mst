@@ -113,7 +113,7 @@ public class GraphSuccessorArray implements Graph {
 	 * @return the indice of the Vertex v in the array p and -1 if he doesn't exist.
 	 * @throws VertexNotFoundException 
 	 */
-	private int searchIndiceVertex(Vertex v) 
+	public int searchIndiceVertex(Vertex v) 
 	{
 		
 		if (p.length > v.val && p[v.val]!=null && v.equals(p[v.val].v))
@@ -126,6 +126,18 @@ public class GraphSuccessorArray implements Graph {
 		return -1;
 	}
 	
+	public boolean contain(ArrayList<Edge> l,Edge e)
+	{
+		if (l==null)
+			return false;
+		
+		for(int i=0;i<l.size();i++)
+		{
+			if(this.s.get(i).equals(e))
+				return true;
+		}
+		return false;
+	}
 	
 
 	@Override
@@ -138,45 +150,45 @@ public class GraphSuccessorArray implements Graph {
 		if (indiceV1 < 0|| indiceV2 <0 )
 			throw new VertexNotFoundException();
 		
-		int indMin = Operations.min(indiceV1,indiceV2);
-		//int indMax = Operations.max(indiceV1,indiceV2);
-		
 		Edge e = null;
 		
+		Vertex vmin = new Vertex( Operations.min(v1.val,v2.val));
+		Vertex vmax = new Vertex(Operations.max(v1.val,v2.val));
+		
+		int indVmin = searchIndiceVertex(vmin);
+		
 		if(weigth>=0)
-			e = new Edge(v1,v2,weigth);
+			e = new Edge(vmin,vmax,weigth);
 		else
-			e = new Edge(v1,v2);
+			e = new Edge(vmin,vmax);
 		//already exist
-		if (s!=null && equals(e))
+		if (s!=null && contain(s,e))
 			return;
 		
-		
-			
 		int before = -1;
 		
-		if (indMin>0) //on n'est pas le premier sommet
+		if (indVmin>0) //on n'est pas le premier sommet
 		{	
 			//on cherche l'indice qui le precede
-			for(int j=indMin-1;j>=0;j--)
+			for(int j=indVmin-1;j>=0;j--)
 			{
 				if (p[j].i>=0)
 					before=(p[j].i);
 			}
 		}
 		
-		if(p[indMin].i<0)//premiere arete reliant ce sommet
+		if(p[indVmin].i<0)//premiere arete reliant ce sommet
 		{
 			s.add(before+1,e);
-			p[indMin].i=before+1;
+			p[indVmin].i=before+1;
 		}
 		else
 		{
-			s.add(p[indMin].i+1,e);
-			p[indMin].i++;
+			s.add(p[indVmin].i+1,e);
+			p[indVmin].i++;
 		}
 	
-		actualiseP(indMin);	
+		actualiseP(indVmin);	
 		
 	}
 
@@ -248,7 +260,9 @@ public class GraphSuccessorArray implements Graph {
 			throw new VertexNotFoundException();
 		
 		List<Edge> l= new ArrayList<Edge>(); 
-		int depart = this.p[indiceN-1].i;
+		int depart = 0;
+		if(indiceN!=0)		
+			depart = this.p[indiceN-1].i;
 		int stop   = this.p[indiceN].i;
 		
 		for(int j=depart+1;j<=stop;j++)
@@ -268,5 +282,39 @@ public class GraphSuccessorArray implements Graph {
 		}
 		
 		return toto;
+	}
+	
+	@Override
+	public String toString()
+	{
+		if (this.p==null)
+			return "";
+		StringBuilder sb= new StringBuilder(50);
+		
+		for(int j=0;j<this.p.length;j++)
+		{
+			if(this.p[j]!=null)
+			{	
+				sb.append(this.p[j].v.val);
+				
+				Iterator<Edge> iterator = null;
+				try {
+					iterator = getListEdges(this.p[j].v.val).iterator();
+				} catch (VertexNotFoundException e) {
+					iterator = null;
+				}
+				
+				Edge e1 = null;
+				while(iterator!=null&&iterator.hasNext())
+				{
+					e1 = iterator.next();
+					sb.append(" "+e1.v2.val+" "+e1.weigth);
+				}
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+		
 	}
 }
