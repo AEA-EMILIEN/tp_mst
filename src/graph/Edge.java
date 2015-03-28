@@ -22,14 +22,14 @@ public class Edge {
 	public Edge(Vertex v1, Vertex v2,int weigth)
 	{
 		this.v1 = v1;
-		this.v1 = v2;
+		this.v2 = v2;
 		this.weigth = weigth;
 	}
 	
 	public Edge(Vertex v1,Vertex v2)
 	{
 		this.v1 = v1;
-		this.v1 = v2;
+		this.v2 = v2;
 		this.N = (int) (Math.pow(n,4));
 		this.weigth= randInt(1,N);
 	}
@@ -115,6 +115,7 @@ public class Edge {
 	{
 		String s = "";
 		s+="v1:"+this.v1.val;
+		System.out.println(s);
 		s+=" v2:"+this.v2.val;
 		s+=" weigth:"+this.weigth;
 		return s;
