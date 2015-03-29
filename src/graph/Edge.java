@@ -10,7 +10,7 @@ public class Edge {
 	public Vertex v2;
 	public int weigth;
 	public int N; //max weight, n^4
-	public final int n = 100; //an int used to calculate N
+	public final int n = 2; //an int used to calculate N
 	
 	public Edge()
 	{

@@ -227,6 +227,12 @@ public class GraphSuccessorArray implements Graph {
 		addEdge(i, j,-1);
 	}
 	
+	@Override
+	public void addEdge(Edge e) throws VertexNotFoundException
+	{
+		addEdge(e.v1,e.v2,e.weigth);
+	}
+	
 	/**
 	 * Return the vertex of value i
 	 * 
@@ -330,4 +336,38 @@ public class GraphSuccessorArray implements Graph {
 		return sb.toString();
 		
 	}
+	
+	
+	public void constructGraph(List<Integer> li,ArrayList<Edge> le)
+	{
+		ArrayList<Vertex> lv = new ArrayList<Vertex>(li.size());
+		for(int i=0;i<li.size();i++)
+			lv.add(new Vertex(li.get(i)));
+		constructGraph(lv, le);
+		return ;
+	}
+	
+	 public void constructGraph(ArrayList<Vertex> lv, ArrayList<Edge> le)
+	 {
+		 this.indNextFree = 0;
+		 this.p = new VertexAndInt[lv.size()];
+		 this.s = new ArrayList<Edge>();
+		 for(int i=0;i<lv.size();i++)
+		 {
+			 try {
+				addVertexNumber(lv.get(i).val);
+			} catch (VertexAlreadyExistException e) {
+				;
+			}
+		 }
+		 for(int i=0;i<le.size();i++)
+		 {
+			 try {
+				addEdge(le.get(i));
+			} catch (VertexNotFoundException e) {
+				;
+			}
+		 }
+		return ; 
+	 }
 }

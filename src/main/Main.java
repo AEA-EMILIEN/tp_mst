@@ -1,6 +1,9 @@
 package main;
 
+import graph.GraphSuccessorArray;
 import graph.RandomGraph;
+import run.Algos;
+import set.DisjointSets;
 import utils.Parser;
 
 public class Main {
@@ -14,8 +17,17 @@ public class Main {
 	
 		
 		RandomGraph g = new RandomGraph();
-		System.out.println(g.meanTimeGenerationErdos(350, (float)0.5));
-		//p.toTextFormat("data/test.txt");
+		g.generateErdosRenyiGraph(6, (float)0.8);
+		
+		
+		
+		Parser p = new Parser((GraphSuccessorArray)g.g);
+		p.toTextFormat("data/randomTest0");
+		Algos algo = new Algos();
+		p.graph = algo.runKruskal(p.graph);
+		p.toTextFormat("data/randomTest0B");
+		
+	
 	}
 
 }

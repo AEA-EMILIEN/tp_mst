@@ -26,7 +26,6 @@ public class Parser {
 	
 	public  void toTextFormat(String file) throws Exception {
 		accessFile.listVertex = this.graph.getListVertex();
-		System.out.println(accessFile.listVertex);
 		accessFile.writer(this.graph.toString(),file);
 	}
 	

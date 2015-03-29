@@ -1,4 +1,5 @@
 package graph;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface Graph {
      
      public void addEdge(int i, int j,int weigth) throws VertexNotFoundException;
      
+     public void addEdge(Edge e) throws VertexNotFoundException;
+     
      public Vertex getVertex(int i) ;
      
      public Iterator<Edge> getSortedEdgeIterator() ;
@@ -28,4 +31,8 @@ public interface Graph {
      
      @Override
      public String toString();
+     
+     public void constructGraph(ArrayList<Vertex> lv, ArrayList<Edge> le);
+     
+     public void constructGraph(List<Integer> li,ArrayList<Edge> le);
 }
