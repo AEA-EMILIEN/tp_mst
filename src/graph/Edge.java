@@ -111,10 +111,9 @@ public class Edge {
 	public String toString()
 	{
 		String s = "";
-		s+="v1:"+this.v1.val;
-		System.out.println(s);
-		s+=" v2:"+this.v2.val;
-		s+=" weigth:"+this.weigth;
+		s+=""+this.v1.val;
+		s+=" "+this.v2.val;
+		s+=" "+this.weigth;
 		return s;
 	}
 	

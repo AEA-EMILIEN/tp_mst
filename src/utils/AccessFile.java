@@ -25,7 +25,6 @@ public class AccessFile {
 			String line;
 			String[] tab = null;
 			while ((line=br.readLine())!=null) {
-				//System.out.println(line);
 				tab = line.split(" ");
 				if (tab.length%2 == 0) 
 					throw new Exception("incomplet file"); // Create the exception
@@ -64,8 +63,9 @@ public class AccessFile {
 					sb.append(s);
 					sb.append("\n");
 				}
-				
 			}
+			
+			sb.deleteCharAt(sb.length()-1);
 			
 			outputFile.print(sb.toString()) ;
 			

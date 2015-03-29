@@ -16,5 +16,11 @@ public class VertexAndInt {
 	{
 		this(v,i);
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.v.toString() + " i:"+this.i;
+	}
 
 }

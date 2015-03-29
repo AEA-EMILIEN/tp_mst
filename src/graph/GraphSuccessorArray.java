@@ -153,7 +153,7 @@ public class GraphSuccessorArray implements Graph {
 		Edge e = null;
 		
 		Vertex vmin = new Vertex( Operations.min(v1.val,v2.val));
-		Vertex vmax = new Vertex(Operations.max(v1.val,v2.val));
+		Vertex vmax = new Vertex( Operations.max(v1.val,v2.val));
 		
 		int indVmin = searchIndiceVertex(vmin);
 		
@@ -173,7 +173,10 @@ public class GraphSuccessorArray implements Graph {
 			for(int j=indVmin-1;j>=0;j--)
 			{
 				if (p[j].i>=0)
-					before=(p[j].i);
+				{
+					before=p[j].i;
+					break;
+				}
 			}
 		}
 		
@@ -260,9 +263,19 @@ public class GraphSuccessorArray implements Graph {
 			throw new VertexNotFoundException();
 		
 		List<Edge> l= new ArrayList<Edge>(); 
-		int depart = 0;
-		if(indiceN!=0)		
-			depart = this.p[indiceN-1].i;
+		int depart = -1;
+		if(indiceN!=0)	
+		{
+			//on cherche l'indice qui le precede
+			for(int j=indiceN-1;j>=0;j--)
+			{
+				if (p[j].i>=0)
+				{
+					depart=p[j].i;
+					break;
+				}
+			}
+		}	
 		int stop   = this.p[indiceN].i;
 		
 		for(int j=depart+1;j<=stop;j++)

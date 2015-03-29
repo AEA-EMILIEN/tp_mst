@@ -23,4 +23,10 @@ public class Vertex {
 		return this.val == v2.val;
 		
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "val:"+this.val;
+	}
 }

@@ -16,7 +16,7 @@ public class Main {
 	
 		System.out.println(p.graph.toString());
 		
-		//p.toTextFormat("data/test.txt");
+		p.toTextFormat("data/test.txt");
 	}
 
 }

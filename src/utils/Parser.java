@@ -5,6 +5,7 @@ import graph.Edge;
 import graph.Graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import graph.GraphSuccessorArray;
@@ -33,6 +34,7 @@ public class Parser {
 	public  Graph loadGraphFromFile(String file) throws Exception {
 		accessFile.reader(file);
 		List<Integer> listVertex = accessFile.listVertex;
+		Collections.sort(listVertex);
 		List<int[]> listEdges = accessFile.listEdges;
 		Graph graph = new GraphSuccessorArray(listVertex.size());
 		for (int v : listVertex){

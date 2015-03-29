@@ -25,4 +25,7 @@ public interface Graph {
      public List<Integer> getListVertex() ;
      
      public List<Edge> getListEdges(int n) throws VertexNotFoundException;
+     
+     @Override
+     public String toString();
 }
