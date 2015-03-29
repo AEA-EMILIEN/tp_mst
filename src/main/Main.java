@@ -1,8 +1,6 @@
 package main;
 
-import graph.Graph;
-import graph.GraphSuccessorArray;
-import graph.Vertex;
+import graph.RandomGraph;
 import utils.Parser;
 
 public class Main {
@@ -12,11 +10,12 @@ public class Main {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		Parser p = new Parser("data/graph_demo.txt");
+		//Parser p = new Parser("data/graph_demo.txt");
 	
-		System.out.println(p.graph.toString());
 		
-		p.toTextFormat("data/test.txt");
+		RandomGraph g = new RandomGraph();
+		System.out.println(g.meanTimeGenerationErdos(350, (float)0.5));
+		//p.toTextFormat("data/test.txt");
 	}
 
 }
