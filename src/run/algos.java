@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
+
 import set.DisjointSets;
 import graph.Edge;
 import graph.Graph;
@@ -92,4 +93,25 @@ public class Algos implements MSTTools {
 		return g;
 	}
 
+	public long timeKruskal(Graph g)
+	{
+		long startTime = System.nanoTime();
+		runKruskal(g);
+		long endTime = System.nanoTime();
+
+		long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+		return duration; 
+	}
+	
+	public String meanTimeKruskal(Graph g)
+	{
+		int t=5;
+		long mean=0;
+		for(int j=0;j<t;j++)
+			mean+=timeKruskal(g);
+		mean/=t;
+		
+		return "kruskal time:"+(mean/1000000)+"ms or "+mean/1000000000+"s"; 
+	}
+	
 }
