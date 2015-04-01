@@ -19,7 +19,7 @@ public class AccessFile {
 			InputStream ips=new FileInputStream(path); 
 			InputStreamReader ipsr=new InputStreamReader(ips);
 			@SuppressWarnings("resource")
-			BufferedReader br=new BufferedReader(ipsr);
+			BufferedReader br=new BufferedReader(ipsr,100000);
 			String line;
 			String[] tab = null;
 			while ((line=br.readLine())!=null) {
@@ -49,7 +49,7 @@ public class AccessFile {
 	public void writer (String sg,String file) {
 		try {
 			FileWriter fw = new FileWriter(file,false) ;
-			BufferedWriter bw = new BufferedWriter(fw) ;
+			BufferedWriter bw = new BufferedWriter(fw,100000) ;
 			PrintWriter outputFile = new PrintWriter(bw) ; 
 			
 			String[] sa = sg.split("\n");

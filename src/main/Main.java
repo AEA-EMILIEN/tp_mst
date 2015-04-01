@@ -15,20 +15,23 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		//Parser p = new Parser("data/graph_demo.txt");
 	
-		
+		/*
 		RandomGraph g = new RandomGraph();
-		g.generateErdosRenyiGraph(10000, (float)0.8);
-		
-		
-		
+		g.generateErdosRenyiGraph(100, (float)0.2);
 		Parser p = new Parser((GraphSuccessorArray)g.g);
 		p.toTextFormat("data/randomTest0");
 		Algos algo = new Algos();
 		System.out.println(algo.meanTimeKruskal(p.graph));
-		//p.graph = algo.runKruskal(p.graph);
+		/*
+		Algos algo = new Algos();
+		p.graph = algo.runKruskal(p.graph);*/
 		//p.toTextFormat("data/randomTest0B");
 		
+		
 	
+		RandomGraph rg = new RandomGraph();
+		System.out.println(rg.meanTimeGenerationErdos(300, 1));
+		
 	}
 
 }

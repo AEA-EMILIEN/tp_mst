@@ -7,7 +7,6 @@ package set;
 
 /**
  * 
- * 
  *  A disjoint sets ADT.  Performs union-by-rank and path compression.
  *  Implemented using arrays.  There is no error checking whatsoever.
  *  Without error-checking, expect bad things to happen if you try to unite
